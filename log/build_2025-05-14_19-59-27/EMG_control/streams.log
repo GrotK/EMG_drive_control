@@ -1,0 +1,26 @@
+[0.882s] Invoking command in '/home/aleksy/Documents/EMG_drive_control/build/EMG_control': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/aleksy/Documents/EMG_drive_control/build/EMG_control/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/aleksy/Documents/EMG_drive_control/install/EMG_control/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/aleksy/Documents/EMG_drive_control/build/EMG_control/build --no-deps symlink_data
+[1.170s] running develop
+[1.301s] /usr/lib/python3/dist-packages/setuptools/command/easy_install.py:363: UserWarning: Unbuilt egg for pytest-repeat [unknown version] (/usr/lib/python3/dist-packages)
+[1.301s]   self.local_index = Environment(self.shadow_path + sys.path)
+[1.331s] running egg_info
+[1.331s] creating EMG_control.egg-info
+[1.346s] writing EMG_control.egg-info/PKG-INFO
+[1.346s] writing dependency_links to EMG_control.egg-info/dependency_links.txt
+[1.347s] writing entry points to EMG_control.egg-info/entry_points.txt
+[1.347s] writing requirements to EMG_control.egg-info/requires.txt
+[1.347s] writing top-level names to EMG_control.egg-info/top_level.txt
+[1.347s] writing manifest file 'EMG_control.egg-info/SOURCES.txt'
+[1.377s] reading manifest file 'EMG_control.egg-info/SOURCES.txt'
+[1.378s] writing manifest file 'EMG_control.egg-info/SOURCES.txt'
+[1.394s] running build_ext
+[1.395s] Creating /home/aleksy/Documents/EMG_drive_control/install/EMG_control/lib/python3.12/site-packages/EMG-control.egg-link (link to .)
+[1.396s] Installing emg_listener script to /home/aleksy/Documents/EMG_drive_control/install/EMG_control/lib/EMG_control
+[1.396s] 
+[1.396s] Installed /home/aleksy/Documents/EMG_drive_control/build/EMG_control
+[1.397s] running symlink_data
+[1.397s] creating /home/aleksy/Documents/EMG_drive_control/install/EMG_control/share/ament_index
+[1.397s] creating /home/aleksy/Documents/EMG_drive_control/install/EMG_control/share/ament_index/resource_index
+[1.397s] creating /home/aleksy/Documents/EMG_drive_control/install/EMG_control/share/ament_index/resource_index/packages
+[1.397s] symbolically linking /home/aleksy/Documents/EMG_drive_control/build/EMG_control/resource/EMG_control -> /home/aleksy/Documents/EMG_drive_control/install/EMG_control/share/ament_index/resource_index/packages
+[1.397s] symbolically linking /home/aleksy/Documents/EMG_drive_control/build/EMG_control/package.xml -> /home/aleksy/Documents/EMG_drive_control/install/EMG_control/share/EMG_control
+[1.437s] Invoked command in '/home/aleksy/Documents/EMG_drive_control/build/EMG_control' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/aleksy/Documents/EMG_drive_control/build/EMG_control/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/aleksy/Documents/EMG_drive_control/install/EMG_control/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/aleksy/Documents/EMG_drive_control/build/EMG_control/build --no-deps symlink_data

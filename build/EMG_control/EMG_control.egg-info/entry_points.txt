@@ -1,0 +1,2 @@
+[console_scripts]
+emg_listener = EMG_control.main:main

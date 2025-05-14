@@ -1,0 +1,22 @@
+running develop
+running egg_info
+creating EMG_control.egg-info
+writing EMG_control.egg-info/PKG-INFO
+writing dependency_links to EMG_control.egg-info/dependency_links.txt
+writing entry points to EMG_control.egg-info/entry_points.txt
+writing requirements to EMG_control.egg-info/requires.txt
+writing top-level names to EMG_control.egg-info/top_level.txt
+writing manifest file 'EMG_control.egg-info/SOURCES.txt'
+reading manifest file 'EMG_control.egg-info/SOURCES.txt'
+writing manifest file 'EMG_control.egg-info/SOURCES.txt'
+running build_ext
+Creating /home/aleksy/Documents/EMG_drive_control/install/EMG_control/lib/python3.12/site-packages/EMG-control.egg-link (link to .)
+Installing emg_listener script to /home/aleksy/Documents/EMG_drive_control/install/EMG_control/lib/EMG_control
+
+Installed /home/aleksy/Documents/EMG_drive_control/build/EMG_control
+running symlink_data
+creating /home/aleksy/Documents/EMG_drive_control/install/EMG_control/share/ament_index
+creating /home/aleksy/Documents/EMG_drive_control/install/EMG_control/share/ament_index/resource_index
+creating /home/aleksy/Documents/EMG_drive_control/install/EMG_control/share/ament_index/resource_index/packages
+symbolically linking /home/aleksy/Documents/EMG_drive_control/build/EMG_control/resource/EMG_control -> /home/aleksy/Documents/EMG_drive_control/install/EMG_control/share/ament_index/resource_index/packages
+symbolically linking /home/aleksy/Documents/EMG_drive_control/build/EMG_control/package.xml -> /home/aleksy/Documents/EMG_drive_control/install/EMG_control/share/EMG_control
