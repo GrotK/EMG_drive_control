@@ -11,12 +11,12 @@ class EMGPublisherNode(Node):
 
         self.publisher = self.create_publisher(Float32MultiArray, '/EMG_signal', 10)
 
-        data_path='/workspace/Dataset/sequential_X.npz'
+        data_path='/workspace/sequential_X/sequential_X.npz'
 
         self.data = self.flatten_overlapping_windows(np.load(data_path)['arr'])
         self.index = 0
 
-        self.timer = self.create_timer(0.5, self.publish_sample)
+        self.timer = self.create_timer(0.01, self.publish_sample)
 
     def publish_sample(self):
         if self.index < len(self.data):

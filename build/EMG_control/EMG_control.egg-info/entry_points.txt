@@ -1,2 +1,4 @@
 [console_scripts]
-emg_listener = EMG_control.main:main
+emg_listener = scripts.main:main
+emg_publisher = scripts.offline_publisher:main
+

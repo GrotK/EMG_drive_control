@@ -1,1 +1,1 @@
-EMG_control
+scripts

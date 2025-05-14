@@ -20,7 +20,7 @@ class EMGClassifierNode(Node):
         self.buffer = []
         self.window_size = 1024
         
-        self.model = torch.load('model.pt', map_location=torch.device('cpu'))
+        self.model = torch.load('/workspace/EMG_drive_control/emg_model.pt', map_location=torch.device('cpu'))
         self.model.eval()
 
     def listener_callback(self, msg):

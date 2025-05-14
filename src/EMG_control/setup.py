@@ -25,8 +25,8 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-           'emg_listener = EMG_control.main:main',
-           'emg_publisher = EMG_control.offline_publisher:main'
+           'emg_listener = scripts.main:main',
+           'emg_publisher = scripts.offline_publisher:main'
         ],
     },
 )
