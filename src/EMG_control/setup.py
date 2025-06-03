@@ -14,7 +14,8 @@ setup(
     install_requires=[
         'setuptools',
         'torch',        
-        'numpy',               
+        'numpy',
+        'onnxruntime',               
         'rclpy',        
     ],
     zip_safe=True,
@@ -25,8 +26,9 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-           'emg_listener = scripts.main:main',
-           'emg_publisher = scripts.offline_publisher:main'
+           'emg_listener = script.main:main',
+           'emg_publisher = script.offline_publisher:main',
+           'emg_turtle_controller = script.gesture_to_cmd:main'
         ],
     },
 )
