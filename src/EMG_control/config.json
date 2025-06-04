@@ -1,0 +1,7 @@
+{
+    "window_size": 1024,
+    "token_len": 2,
+    "num_channels": 8,
+    "model_path": "/workspace/EMG_drive_control/8_channel.onnx"
+  }
+  

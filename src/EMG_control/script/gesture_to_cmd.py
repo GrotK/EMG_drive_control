@@ -22,8 +22,8 @@ class GestureToCmdNode(Node):
 
         twist = Twist()
 
-        if gesture_id == 1:  # fist
-            self.get_logger().info('Gesture: Fist – stopping.')
+        if gesture_id == 0:  # fist
+            self.get_logger().info('Gesture: Idle – stopping.')
             twist = self.stop()
         elif gesture_id == 2:  # flexion
             self.get_logger().info('Gesture: Flexion – turning left.')
@@ -31,11 +31,11 @@ class GestureToCmdNode(Node):
         elif gesture_id == 3:  # extension
             self.get_logger().info('Gesture: Extension – turning right.')
             twist = self.turn_right()
-        elif gesture_id == 4:  # pinch thumb-index
-            self.get_logger().info('Gesture: Pinch Thumb-Index – moving forward.')
+        elif gesture_id == 1:  # pinch thumb-index
+            self.get_logger().info('Gesture: Fist-Index – moving forward.')
             twist = self.move_forward()
         else:
-            self.get_logger().info('Gesture ignored (idle or unsupported pinch).')
+            self.get_logger().info('Gesture ignored (unsupported pinch).')
             return  # nie publikuj nic, ignoruj
 
         self.publisher.publish(twist)

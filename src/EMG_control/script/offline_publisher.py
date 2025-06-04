@@ -1,49 +1,88 @@
 import rclpy
 from rclpy.node import Node
-from std_msgs.msg import Float32MultiArray
+from std_msgs.msg import Float32MultiArray, Int32
 import numpy as np
-import time
-
+import random
 
 class EMGPublisherNode(Node):
     def __init__(self):
         super().__init__('emg_publisher')
 
         self.publisher = self.create_publisher(Float32MultiArray, '/EMG_signal', 10)
+        self.subscription = self.create_subscription(Int32, '/target_label', self.label_callback, 10)
 
-        data_path='/workspace/sequential_X/sequential_X.npz'
+        self.data = np.load('/workspace/sequential_X/sequential_X.npz')['arr']  # (N, 1024, 24)
+        self.labels = np.argmax(np.load('/workspace/sequential_X/sequential_y.npz')['arr'], axis=1)  # (N,)
+        
+        self.target_label = 0
+        self.state = 'idle'
+        self.sample_size = 10
+        self.sample_sequence = None
+        self.sample_index = 0
 
-        self.data = self.flatten_overlapping_windows(np.load(data_path)['arr'])
-        self.index = 0
+        self.timer = self.create_timer(0.001, self.publish_sample)
 
-        self.timer = self.create_timer(0.0002, self.publish_sample)
+    def label_callback(self, msg):
+        label = msg.data
+        if self.state=='idle':
+            self.target_label = label
+            self.get_logger().info(f'Received target label: {label}')
+            self.select_sequence_for_label(label)
+        if label != self.target_label:
+            self.get_logger().info(f'Received target label: {label}')
+            self.sequence=None
+            self.select_sequence_for_label(label)
+            self.target_label=label
+
+    def find_label_sequences(self, label):
+        sequences = []
+        start = None
+        for i, lab in enumerate(self.labels):
+            if lab == label:
+                if start is None:
+                    start = i
+            else:
+                if start is not None:
+                    sequences.append((start, i))
+                    start = None
+        if start is not None:
+            sequences.append((start, len(self.labels)))
+        return sequences
+
+    def select_sequence_for_label(self, label):
+        sequences = self.find_label_sequences(label)
+        if not sequences:
+            self.get_logger().warn(f"No sequences found for label {label}")
+            return
+
+        selected_start, selected_end = random.choice(sequences)
+        selected_seq = self.data[selected_start:selected_end]  
+        self.sample_sequence = selected_seq.reshape(-1, 24)    
+        self.sample_index = 0
+        self.state = 'sending'
+        #self.get_logger().info(f"Selected label {label} sequence: [{selected_start}, {selected_end})")
 
     def publish_sample(self):
-        if self.index < len(self.data):
-            sample = self.data[self.index]
+        if self.state != 'sending' or self.sample_sequence is None:
+            return
+
+        if self.sample_index < len(self.sample_sequence):
             msg = Float32MultiArray()
-            msg.data = sample.tolist()  
+            msg.data = self.sample_sequence[self.sample_index].flatten().tolist()  
             self.publisher.publish(msg)
-            self.get_logger().info(f'Published EMG sample {self.index}')
-            
-            self.index += 1
+            #self.get_logger().info(f"published {self.sample_index } out of: {len(self.sample_sequence)} samples for {self.target_label} label")
+            self.sample_index += 1
         else:
-            self.get_logger().info('All samples published.')
-            self.destroy_node()  
+            self.get_logger().info('Finished sending sequence.')
+            self.sample_sequence = None
+            self.sample_index = 0
+            self.state = 'idle'
+            self.target_label = 0
+            self.select_sequence_for_label(self.target_label)
 
-    def flatten_overlapping_windows(self, data, stride=512):
-        num_windows, window_size, num_channels = data.shape
-        result = []
-
-        result.append(data[0])
-
-        for i in range(1, num_windows):
-            result.append(data[i][-stride:])
-
-        flattened_data = np.concatenate(result, axis=0) 
-        print(np.shape(flattened_data))
-        return flattened_data
-
+        
+        
+        
 def main(args=None):
     rclpy.init(args=args)
     node = EMGPublisherNode()
