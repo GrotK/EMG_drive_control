@@ -48,3 +48,11 @@ Ostatni węzeł zajmuje się sterowaniem samym robotem, w naszym przypadku turtl
 ## Przyszły rozwój
 
 Aby w przyszłości uruchomić program online na prawdziwym robocie lub na prawdziwych danych w czasie rzeczywistym z opaski nalezy zmienic odpowiednio węzeł wyjsciowy do sterowania odpowiednim robotem - gesture_to_cmd lub węzeł wejsciowy - emg_publisher, do działania w trybie online na danych w czasie rzeczywistym.
+
+## Moduł STN
+
+STN - Spartial Transformer Network
+Artykuł naukowy:
+https://arxiv.org/pdf/1506.02025
+Przykładowa implementacja:
+https://docs.pytorch.org/tutorials/intermediate/spatial_transformer_tutorial.html
